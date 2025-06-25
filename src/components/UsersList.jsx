@@ -14,8 +14,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
-import customerData from '../../tests/MOCK_DATA.json'
-
+import customerData from '../tests/MOCK_DATA.json'
+import { useNavigate } from 'react-router-dom';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -167,7 +167,8 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function UsersList() {
+    const navigate = useNavigate();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [selected, setSelected] = React.useState(null);
@@ -228,7 +229,11 @@ export default function EnhancedTable() {
                             {visibleRows.map((row, index) => {
 
                                 return (
-                                    <TableRow>
+                                    <TableRow
+                                        hover
+                                        onClick={() => navigate(`/users/${row.id}`)}
+                                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' } }}
+                                    >
                                         <TableCell
                                             component="th"
                                             id={index}
@@ -240,7 +245,7 @@ export default function EnhancedTable() {
                                         <TableCell align="right">{row.phone_number}</TableCell>
                                         <TableCell align="center">{row.email}</TableCell>
                                         <TableCell align="right">Active</TableCell>
-                                        <TableCell align="right">0</TableCell>
+                                        <TableCell align="center">0</TableCell>
 
 
                                     </TableRow>
