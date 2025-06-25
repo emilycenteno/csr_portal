@@ -1,27 +1,31 @@
 import { useState } from 'react'
 import './App.css'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import CustomerCard from './components/CustomerCard';
-import customerData from './tests/MOCK_DATA.json';
+import { Toolbar } from '@mui/material';
+import NavBar from './components/NavBar';
+import CustomerOverviewPage from './components/Customer Overview Page/OverviewPage';
+import UsersListCard from './components/Home Page/UsersList';
 
 
 
 
-console.log(customerData);
+
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-
-    {customerData.map((item, index) => (<CustomerCard key={index} customer = {item} />))}
-      
-
+      < NavBar />
+      < Toolbar />
+      {/* router -> home page or customer overview  */}
+      {/* <CustomerOverviewPage /> */}
+      < UsersListCard /> 
     </>
   )
+
 }
 
 export default App
+
+
+
+

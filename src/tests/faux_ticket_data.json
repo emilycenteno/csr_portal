@@ -1,0 +1,42 @@
+[
+    {
+        "RefID": "01JYHR",
+        "Title": "Late payment",
+        "Status": "In Progress",
+        "Description": "here is a more detailed description of the ticket",
+        "Type": "task",
+        "Reported on": "2024-11-28 13:24:22",
+        "Last Update": "2024-10-23 18:28:42",
+        "Comments": "here will be any additional comments left by the customer service representatives if needed."
+    },
+    {
+        "RefID": "042YFD",
+        "Title": "Edit/Remove Vehicle",
+        "Status": "Resolved",
+        "Description": "here is a more detailed description of the ticket",
+        "Type": "bug",
+        "Reported on": "2024-06-20 06:21:27",
+        "Last Update": "2024-06-02 19:52:26",
+        "Comments": "here will be any additional comments left by the customer service representatives if needed."
+    },
+    {
+        "RefID": "5554J6",
+        "Title": "Change Contact Info",
+        "Status": "Resolved",
+        "Description": "here is a more detailed description of the ticket",
+        "Type": "bug",
+        "Reported on": "2025-02-26 14:07:50",
+        "Last Update": "2025-03-16 00:03:47",
+        "Comments": "here will be any additional comments left by the customer service representatives if needed."
+    },
+    {
+        "RefID": "GH3FTS",
+        "Title": "Late payment",
+        "Status": "Resolved",
+        "Description": "here is a more detailed description of the ticket",
+        "Type": "task",
+        "Reported on": "2025-06-19 08:44:38",
+        "Last Update": "2024-12-11 11:43:35",
+        "Comments": "here will be any additional comments left by the customer service representatives if needed."
+    }
+]
