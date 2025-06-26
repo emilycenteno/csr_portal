@@ -3,8 +3,6 @@ import './App.css'
 import { Toolbar } from '@mui/material';
 import NavBar from './components/NavBar';
 import { useLoaderData, Outlet } from 'react-router-dom';
-import CustomerOverviewPage from './components/Customer Overview Page/OverviewPage';
-import UsersListCard from './components/Home Page/UsersList';
 
 
 
