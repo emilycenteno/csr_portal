@@ -20,16 +20,18 @@ export default function NavBar() {
             size="large"
             edge="start"
             color="inherit"
-            aria-label="menu"
+            aria-label="Home"
             sx={{ mr: 2 }}
           >
             <HomeIcon onClick={() => navigate('/')}
             />
           </IconButton>
           <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            AMP Customer Service
+            AMP Customer Service Portal
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Typography align="right" variant="h7" component="div" sx={{ flexGrow: 1 }}>
+          Welcome, &#123;Representative&#125;
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>

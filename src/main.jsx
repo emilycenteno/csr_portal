@@ -5,8 +5,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { allCustomersLoader, customerLoader } from './api.js';
-
-import Home from './routes/home.jsx'
+import Home from './routes/Home.jsx';
 import App from './App.jsx'
 import OverviewPage from './components/customer_overview/OverviewPage.jsx'
 import ErrorPage from './routes/ErrorPage.jsx';

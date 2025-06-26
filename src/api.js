@@ -1,11 +1,11 @@
-export async function updateUserInfo (data, customer )  {
-        const res = await fetch(`http://localhost:4000/users/${customer.id}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-        return res; 
-    };
+export async function updateUserInfo(data, customer) {
+    const res = await fetch(`http://localhost:4000/users/${customer.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+    });
+    return res;
+};
 
 
 
@@ -27,6 +27,13 @@ export async function allCustomersLoader() {
         throw new Response('Failed to load users', { status: res.status });
     }
     const data = await res.json();
-    console.log('Loaded users in loader:', data);
     return data;
 }
+
+export async function deleteUser(customer) {
+    const res = await fetch(`http://localhost:4000/users/${customer.id}`, {
+        method: 'DELETE',
+    });
+
+    return res;
+};
