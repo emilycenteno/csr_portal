@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 
 
@@ -70,13 +71,6 @@ const headCells = [
         sortable: true,
         width: 50
     },
-    {
-        id: 'tickets',
-        label: 'Open Tickets',
-        alignment: 'lerightft',
-        sortable: false,
-        width: 75
-    },
 
 ];
 
@@ -126,40 +120,24 @@ EnhancedTableHead.propTypes = {
 
 };
 
-function EnhancedTableToolbar(props) {
-    const { numSelected } = props;
+function EnhancedTableToolbar() {
     return (
         <Toolbar
             sx={[
                 {
                     pl: { sm: 2 },
                     pr: { xs: 1, sm: 1 },
-                },
-                numSelected > 0 && {
-                    bgcolor: (theme) =>
-                        alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-                },
+                }
             ]}
         >
-            {numSelected > 0 ? (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="inherit"
-                    variant="subtitle1"
-                    component="div"
-                >
-                    {numSelected} selected
-                </Typography>
-            ) : (
-                <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    variant="h6"
-                    id="tableTitle"
-                    component="div"
-                >
-                    User Information
-                </Typography>
-            )}
+            <Typography
+                sx={{ flex: '1 1 100%' }}
+                variant="h6"
+                id="tableTitle"
+                component="div"
+            >
+                User Information
+            </Typography>
         </Toolbar>
     );
 }
@@ -172,26 +150,31 @@ export default function UsersList({ usersData }) {
     if (!Array.isArray(usersData)) {
         return <div>Loading or no users found</div>;
     }
-    console.log(typeof usersData)
 
 
     const navigate = useNavigate();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState(null);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(33);
+    const [searchPrompt, setSearchPrompt] = React.useState('');
+
+    const filteredCustomers = usersData.filter((customer) => {
+        const query = searchPrompt.toLowerCase();
+        return (
+            customer.first_name.toLowerCase().includes(query) ||
+            customer.last_name.toLowerCase().includes(query) ||
+            customer.email.toLowerCase().includes(query) ||
+            customer.phone_number.replace(/-/g, '').includes(query.replace(/-/g, ''))
+        );
+    });
+
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-
-    const handleClick = (event, id) => {
-        setSelected(prevSelected => (prevSelected === id ? null : id));
-    };
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -202,27 +185,47 @@ export default function UsersList({ usersData }) {
         setPage(0);
     };
 
-    // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - usersData.length) : 0;
 
-    const visibleRows = React.useMemo(
-        () =>
-            [...usersData]
-                .sort(getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-        [order, orderBy, page, rowsPerPage],
-    );
+    const visibleRows = React.useMemo(() => {
+        const filtered = usersData.filter((user) => {
+            // Combine searchable fields into one string
+            const searchable = `
+                ${user.first_name}
+                ${user.last_name}
+                ${user.email}
+                ${user.phone_number.replace(/-/g, '')}
+            `.toLowerCase();
 
+            // Clean and split search input into individual terms
+            const terms = searchPrompt.toLowerCase().trim().split(/\s+/);
+
+            // Ensure **every** term is found somewhere in the combined fields
+            return terms.every(term => searchable.includes(term));
+        });
+
+        return filtered
+            .sort(getComparator(order, orderBy))
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+    }, [searchPrompt, usersData, order, orderBy, page, rowsPerPage]);
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar numSelected={selected ? 1 : 0} />
+                <EnhancedTableToolbar />
+                <TextField
+                    fullWidth
+                    label="Search by name, email, or phone"
+                    variant="outlined"
+                    value={searchPrompt}
+                    onChange={(e) => setSearchPrompt(e.target.value)}
+                    sx={{ mb: 2 }}
+                />
                 <TableContainer>
                     <Table
                         sx={{
                             minWidth: 750,
-                            tableLayout: 'fixed'
+                            tableLayout: 'auto'
                         }}
                         aria-labelledby="tableTitle"
                         size={'medium'}
@@ -236,7 +239,7 @@ export default function UsersList({ usersData }) {
                             {visibleRows.map((row, index) => {
 
                                 return (
-                                    <TableRow
+                                    <TableRow key={row.id}
                                         hover
                                         onClick={() => navigate(`/users/${row.id}`)}
                                         sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' } }}
@@ -252,7 +255,6 @@ export default function UsersList({ usersData }) {
                                         <TableCell align="right">{row.phone_number}</TableCell>
                                         <TableCell align="center">{row.email}</TableCell>
                                         <TableCell align="right">Active</TableCell>
-                                        <TableCell align="center">0</TableCell>
 
 
                                     </TableRow>

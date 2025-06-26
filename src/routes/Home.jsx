@@ -18,7 +18,6 @@ const drawerWidth = 240;
 
 export default function Home() {
   const usersData = useLoaderData();
-  console.log(usersData);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

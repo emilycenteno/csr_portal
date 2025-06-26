@@ -27,6 +27,5 @@ export async function allCustomersLoader() {
         throw new Response('Failed to load users', { status: res.status });
     }
     const data = await res.json();
-    console.log('Loaded users in loader:', data);
     return data;
 }
