@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -16,6 +15,7 @@ import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
+import { Box } from '@mui/material';
 
 
 
@@ -41,35 +41,30 @@ const headCells = [
         label: 'Last Name',
         alignment: 'left',
         sortable: true,
-        width: 125
     },
     {
         id: 'first_name',
         label: 'First Name',
         alignment: 'center',
         sortable: true,
-        width: 125
     },
     {
         id: 'phone',
         label: 'Phone Number',
-        alignment: 'right',
+        alignment: 'center',
         sortable: false,
-        width: 125
     },
     {
         id: 'email',
         label: 'Email Address',
         alignment: 'center',
         sortable: true,
-        width: 200
     },
     {
         id: 'status',
         label: 'Status',
         alignment: 'right',
         sortable: true,
-        width: 50
     },
 
 ];
@@ -88,7 +83,7 @@ function EnhancedTableHead(props) {
                         key={headCell.id}
                         align={headCell.alignment}
                         sortDirection={orderBy === headCell.id ? order : false}
-                        sx={{ width: headCell.width }}
+
                     >
                         {headCell.sortable ? (<TableSortLabel
                             active={orderBy === headCell.id}
@@ -133,7 +128,7 @@ function EnhancedTableToolbar() {
 
             <Typography
                 sx={{ flex: '1 1 100%' }}
-                variant="h6"
+                variant="h5"
                 id="tableTitle"
                 component="div"
             >
@@ -212,14 +207,18 @@ export default function UsersList({ usersData }) {
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     }, [searchPrompt, usersData, order, orderBy, page, rowsPerPage]);
     return (
-        <Box sx={{ width: '100%' }}>
-            <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar/>
-                <TableContainer>
+        <Box sx={{ px: 2, width: '100%', overflowX: 'auto' }}>
+            <Paper sx={{ width: '100%', p: 2 }}>
+                <EnhancedTableToolbar />
+                <TableContainer sx={{ width: '100%' }}>
                     <Table
-                        sx={{
+                        Table sx={{
                             minWidth: 750,
-                            tableLayout: 'auto'
+                            width: '100%',
+                            tableLayout: 'fixed',
+                            '& td, & th': {
+                                px: 2,
+                            }
                         }}
                         aria-labelledby="tableTitle"
                         size={'medium'}
@@ -234,7 +233,7 @@ export default function UsersList({ usersData }) {
 
                                 return (
                                     <TableRow key={row.id}
-                                        hover
+                                        hove
                                         onClick={() => navigate(`/users/${row.id}`)}
                                         sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' } }}
                                     >
@@ -246,7 +245,7 @@ export default function UsersList({ usersData }) {
                                             {row.last_name}
                                         </TableCell>
                                         <TableCell align="center">{row.first_name}</TableCell>
-                                        <TableCell align="right">{row.phone_number}</TableCell>
+                                        <TableCell align="center">{row.phone_number}</TableCell>
                                         <TableCell align="center">{row.email}</TableCell>
                                         <TableCell align="right">Active</TableCell>
 
@@ -276,6 +275,6 @@ export default function UsersList({ usersData }) {
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-        </Box>
+        </Box >
     );
 }
