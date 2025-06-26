@@ -190,19 +190,18 @@ export default function UsersList({ usersData }) {
 
     const visibleRows = React.useMemo(() => {
         const filtered = usersData.filter((user) => {
-            // Combine searchable fields into one string
-            const searchable = `
-                ${user.first_name}
-                ${user.last_name}
-                ${user.email}
-                ${user.phone_number.replace(/-/g, '')}
-            `.toLowerCase();
+            const firstName = user.first_name.toLowerCase();
+            const lastName = user.last_name.toLowerCase();
+            const email = user.email.toLowerCase().trim();
+            const phone = user.phone_number.replace(/-/g, '').trim();
+            const query = searchPrompt.toLowerCase().trim();
 
-            // Clean and split search input into individual terms
-            const terms = searchPrompt.toLowerCase().trim().split(/\s+/);
-
-            // Ensure **every** term is found somewhere in the combined fields
-            return terms.every(term => searchable.includes(term));
+            return (
+                firstName.includes(query) ||
+                lastName.includes(query) ||
+                email.includes(query) ||
+                phone.startsWith(query.replace(/-/g, ''))
+            );
         });
 
         return filtered

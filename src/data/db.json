@@ -1,6 +1,135 @@
 {
   "users": [
     {
+      "id": "1",
+      "first_name": "Gabriellia",
+      "last_name": "Newby",
+      "email": "gnewby0@aboutads.info",
+      "phone_number": "571-255-1073",
+      "address": {
+        "street": "81 Havey Crossing",
+        "line_2": "2nd Floor",
+        "city": "Springfield",
+        "state": "VA",
+        "postal_code": "22156"
+      },
+      "cars": [
+        {
+          "make": "BMW",
+          "model": "Z4",
+          "year": 2010,
+          "vin": "1G6KY54943U186407"
+        },
+        {
+          "make": "Dodge",
+          "model": "Ram 1500",
+          "year": 2010,
+          "vin": "JH4CU2F60CC966083"
+        },
+        {
+          "make": "Land Rover",
+          "model": "Range Rover",
+          "year": 2007,
+          "vin": "5J6TF2H59FL927751"
+        },
+        {
+          "make": "Pontiac",
+          "model": "Grand Prix",
+          "year": 1989,
+          "vin": "2B3CA2CV6AH616104"
+        }
+      ],
+      "credit_card": {
+        "number": "5048378025981633",
+        "type": "mastercard",
+        "zip": "53790"
+      }
+    },
+    {
+      "id": "2",
+      "first_name": "Silvio",
+      "last_name": "Alcide",
+      "email": "salcide1@godaddy.com",
+      "phone_number": "405-620-0838",
+      "address": {
+        "street": "3 Boyd Park",
+        "line_2": null,
+        "city": "Oklahoma City",
+        "state": "OK",
+        "postal_code": "73179"
+      },
+      "cars": [
+        {
+          "make": "Lexus",
+          "model": "IS",
+          "year": 2009,
+          "vin": "1FM5K7B83DG017943"
+        },
+        {
+          "make": "Volvo",
+          "model": "S80",
+          "year": 2003,
+          "vin": "2C3CDXJGXFH204061"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "S-Class",
+          "year": 1988,
+          "vin": "2G4GS5EV5C9353169"
+        },
+        {
+          "make": "Ford",
+          "model": "Mustang",
+          "year": 2004,
+          "vin": "1GYS4CEF4DR557971"
+        }
+      ],
+      "credit_card": {
+        "number": "5048370613233212",
+        "type": "mastercard",
+        "zip": "02109"
+      }
+    },
+    {
+      "id": "3",
+      "first_name": "Delano",
+      "last_name": "McGawn",
+      "email": "dmcgawn2@google.com.hk",
+      "phone_number": "512-636-7559",
+      "address": {
+        "street": "1009 Anzinger Park",
+        "line_2": null,
+        "city": "Austin",
+        "state": "TX",
+        "postal_code": "78710"
+      },
+      "cars": [
+        {
+          "make": "Mercedes-Benz",
+          "model": "SL-Class",
+          "year": 1997,
+          "vin": "WBAUP9C58CV233153"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Caprice Classic",
+          "year": 1996,
+          "vin": "WAUWFAFL4AA902904"
+        },
+        {
+          "make": "Plymouth",
+          "model": "Breeze",
+          "year": 1998,
+          "vin": "5NPEB4AC0CH271924"
+        }
+      ],
+      "credit_card": {
+        "number": "5108758448148646",
+        "type": "mastercard",
+        "zip": "29424"
+      }
+    },
+    {
       "id": "4",
       "first_name": "Erinn",
       "last_name": "O'Crevy",
