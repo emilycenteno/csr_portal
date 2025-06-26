@@ -14,8 +14,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
-import customerData from '../tests/MOCK_DATA.json'
 import { useNavigate } from 'react-router-dom';
+
+
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -167,7 +168,13 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
-export default function UsersList() {
+export default function UsersList({ usersData }) {
+    if (!Array.isArray(usersData)) {
+        return <div>Loading or no users found</div>;
+    }
+    console.log(typeof usersData)
+
+
     const navigate = useNavigate();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
@@ -197,11 +204,11 @@ export default function UsersList() {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - customerData.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - usersData.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            [...customerData]
+            [...usersData]
                 .sort(getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
         [order, orderBy, page, rowsPerPage],
@@ -266,7 +273,7 @@ export default function UsersList() {
                 <TablePagination
                     rowsPerPageOptions={[33, 66, 99]}
                     component="div"
-                    count={customerData.length}
+                    count={usersData.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}

@@ -4,10 +4,15 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
+import { allCustomersLoader, customerLoader } from './api.js';
+
 import Home from './routes/home.jsx'
 import App from './App.jsx'
-import OverviewPage from './components/Customer Overview Page/OverviewPage.jsx'
-import usersData from './tests/MOCK_DATA.json';
+import OverviewPage from './components/customer_overview/OverviewPage.jsx'
+import ErrorPage from './routes/ErrorPage.jsx';
+
+
+
 
 import './index.css'
 import '@fontsource/roboto/300.css';
@@ -24,34 +29,25 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    loader: () => usersData,
     children: [
       {
         index: true,
         element: <Home />,
-        errorElement: <div>Something went wrong loading data</div>,
-
+        loader: allCustomersLoader,
+        errorElement: <ErrorPage />,
       },
-    ]
+      {
+        path: 'users/:userId',
+        element: <OverviewPage />,
+        loader: customerLoader,
+        errorElement: <ErrorPage />,
+      },
+    ],
   },
-  {
-    path: 'users/:userId',
-    element: <OverviewPage />,
-    loader: async ({ params }) => {
-      const userId = parseInt(params.userId, 10); // convert to number
-      const user = usersData.find(u => u.id === userId);
-      if (!user) {
-        throw new Response("Not Found", { status: 404 });
-      }
-      return user;
-    },
-    errorElement: <div>User not found</div>
-  }
-])
-
+]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-)
+);
 
