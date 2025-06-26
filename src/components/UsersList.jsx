@@ -123,13 +123,14 @@ EnhancedTableHead.propTypes = {
 function EnhancedTableToolbar() {
     return (
         <Toolbar
-            sx={[
+            sx={
                 {
                     pl: { sm: 2 },
                     pr: { xs: 1, sm: 1 },
                 }
-            ]}
+            }
         >
+
             <Typography
                 sx={{ flex: '1 1 100%' }}
                 variant="h6"
@@ -138,7 +139,8 @@ function EnhancedTableToolbar() {
             >
                 User Information
             </Typography>
-        </Toolbar>
+
+        </ Toolbar >
     );
 }
 
@@ -150,7 +152,6 @@ export default function UsersList({ usersData }) {
     if (!Array.isArray(usersData)) {
         return <div>Loading or no users found</div>;
     }
-
 
     const navigate = useNavigate();
     const [order, setOrder] = React.useState('asc');
@@ -175,6 +176,7 @@ export default function UsersList({ usersData }) {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -212,15 +214,7 @@ export default function UsersList({ usersData }) {
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <EnhancedTableToolbar />
-                <TextField
-                    fullWidth
-                    label="Search by name, email, or phone"
-                    variant="outlined"
-                    value={searchPrompt}
-                    onChange={(e) => setSearchPrompt(e.target.value)}
-                    sx={{ mb: 2 }}
-                />
+                <EnhancedTableToolbar/>
                 <TableContainer>
                     <Table
                         sx={{

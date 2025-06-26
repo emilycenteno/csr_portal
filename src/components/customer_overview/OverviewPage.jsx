@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { updateUserInfo } from '../../api';
 import EditVehiclesModal from './EditVehiclesModal';
+import PaymentInfoCard from './PaymentInfoCard';
 
 
 
@@ -46,8 +47,13 @@ export default function CustomerOverviewPage() {
                 <Grid size={{ xs: 6, md: 5 }}>
                     <CustomerInfoCard key={customer?.id} customer={customer} onEdit={() => setContactModalOpen(true)} />
                 </Grid>
-                <Grid size={{ xs: 6, md: 7 }}>
+                {/* <Grid size={{ xs: 6, md: 7 }}>
                     <TicketCard tickets={ticketData} />
+                </Grid> */}
+                <Grid size={{
+                    xs: 6, md: 7
+                }}>
+                    <PaymentInfoCard key = {customer?.id} creditCard = {customer.credit_card} />
                 </Grid>
                 <Grid size={{ xs: 6, md: 5 }}>
                     <VehiclesCard key={customer?.id} customer={customer} onEdit={openCarModal} />

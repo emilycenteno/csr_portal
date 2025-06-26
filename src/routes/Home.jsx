@@ -17,11 +17,10 @@ import { useLoaderData } from 'react-router-dom';
 const drawerWidth = 240;
 
 export default function Home() {
-  const usersData = useLoaderData();
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <Toolbar />  {/* acts like a spacer */}
+      <Toolbar />
 
       <Drawer
         sx={{
@@ -68,7 +67,7 @@ export default function Home() {
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
-        <UsersList usersData = {usersData} />
+        <UsersList usersData = {useLoaderData()} />
       </Box>
     </Box>
   );
