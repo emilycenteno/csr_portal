@@ -11,10 +11,18 @@ import { useForm, Controller } from 'react-hook-form';
 import { updateUserInfo } from '../../../../services/api';
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
-const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState }) => {
+import { getUser } from '../../../../services/api';
+
+const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState, setActiveCustomer }) => {
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
     });
+
+    const refreshUser = async (id) => {
+        const newCustomerData = await getUser(id);
+        console.log(newCustomerData)
+        setActiveCustomer(newCustomerData);
+    }
 
     const submitHandler = async (data) => {
 
@@ -29,6 +37,7 @@ const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState }) => 
 
         if (res.ok) {
             setAddNewVehicleState(false);
+            await refreshUser(newCustomer.id);
         } else {
             alert('Update failed');
             setAddNewVehicleState(false);

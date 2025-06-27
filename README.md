@@ -26,20 +26,22 @@ This project is a CSR portal for AMP built with React. It allows CSRs to search 
 
 ## Installation & Running Locally: 
 
-Clone the reposityory and install dependencies: 
+1. Clone the reposityory and install dependencies: 
 
 git clone <repo-url>
 cd <project-folder>
-npm install
+npm install -g
 npm start
 
-To run JSON-Server:  
+2. Run JSON-Server:  
 
 npm install json-server 
-cd <project-folder>/data/db.json 
+cd src/data/db.json 
 json-server --watch db.json --port 4000 
 
-Open your browser and navigate to: http://localhost:5173 
+3. Open your browser and navigate to: http://localhost:5173 
+
+** To view JSON data in browser, navigate to: http://localhost:4000 
 
 ## Viewing Live Deployment: 
 
