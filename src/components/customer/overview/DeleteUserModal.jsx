@@ -9,10 +9,13 @@ import {
 import { useState } from 'react';
 
 
-export default function DeleteUserModal({ open, initialData, onClose, onSubmit }) {
+const DeleteUserModal = ({ open, initialData, onClose, onSubmit }) => {
     const [verification, setVerification] = useState('');
     const fullName = `${initialData.first_name} ${initialData.last_name}`;
-    const handleSubmit = () => verification === fullName ? onSubmit() : alert("ERROR!");
+    const handleSubmit = () => {
+        verification === fullName ? onSubmit() : alert("ERROR!");
+    }
+
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>{`Delete ${fullName}`}</DialogTitle>
@@ -33,5 +36,6 @@ export default function DeleteUserModal({ open, initialData, onClose, onSubmit }
             </DialogActions>
         </Dialog>
     )
-
 }
+
+export default DeleteUserModal;

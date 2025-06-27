@@ -8,11 +8,9 @@ import {
     Button
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { updateUserInfo } from '../../../api';
-import { useNavigate } from 'react-router-dom'; 
+import { updateUserInfo } from '../../../../services/api';
 
-export default function EditPaymentModal({ open, initialData, onClose, setPaymentModalState }) {
-    const navigate = useNavigate();
+const EditPaymentModal = ({ open, initialData, onClose, setPaymentModalState }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: initialData.credit_card
@@ -29,12 +27,9 @@ export default function EditPaymentModal({ open, initialData, onClose, setPaymen
 
         if (res.ok) {
             setPaymentModalState(false);
-            navigate(0);
-            // navigate(0); // Todo: replace with proper state handling 
         } else {
             alert('Update failed');
             setPaymentModalState(false);
-            navigate(0);
         }
     };
 
@@ -80,3 +75,5 @@ export default function EditPaymentModal({ open, initialData, onClose, setPaymen
         </Dialog>
     );
 }
+
+export default EditPaymentModal;

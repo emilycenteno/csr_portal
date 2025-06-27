@@ -9,11 +9,9 @@ import {
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { updateUserInfo } from '../../../../services/api';
-import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
-export default function EditVehiclesModal({ carKey, initialData, onClose, setVehicleModalState }) {
-    const navigate = useNavigate();
+const EditVehiclesModal = ({ carKey, initialData, onClose, setVehicleModalState }) => {
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
         defaultValues: initialData.cars[carKey],
@@ -30,12 +28,9 @@ export default function EditVehiclesModal({ carKey, initialData, onClose, setVeh
 
         if (res.ok) {
             setVehicleModalState(false);
-            navigate(0);
-            // navigate(0); // Todo: replace with proper state handling 
         } else {
             alert('Update failed');
             setVehicleModalState(false);
-            navigate(0);
         }
     };
 
@@ -100,3 +95,5 @@ export default function EditVehiclesModal({ carKey, initialData, onClose, setVeh
         </Dialog>
     );
 }
+
+export default EditVehiclesModal;

@@ -9,7 +9,7 @@ import {
 import { useForm } from 'react-hook-form';
 
 
-export default function EditContactModal({ initialData, onClose, onSubmit }) {
+const EditContactModal = ({ initialData, onClose, onSubmit }) => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: initialData,
   });
@@ -91,3 +91,5 @@ export default function EditContactModal({ initialData, onClose, onSubmit }) {
     </Dialog>
   );
 }
+
+export default EditContactModal;
