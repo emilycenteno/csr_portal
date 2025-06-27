@@ -8,7 +8,7 @@ import {
     Button
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { updateUserInfo } from '../../api';
+import { updateUserInfo } from '../../../../services/api';
 
 export default function DeleteCarModal({ carKey, open, onClose, initialData, setDeleteCarModalState }) {
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ export default function DeleteCarModal({ carKey, open, onClose, initialData, set
         if (res.ok) {
             setDeleteCarModalState(false);
             navigate(0);
-            
+
         } else {
             alert('Deletion failed');
             setDeleteCarModalState(false);

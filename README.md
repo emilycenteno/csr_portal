@@ -1,12 +1,64 @@
-# React + Vite
+# Customer Service Representative portal for AMP - Coding Challenge 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview 
 
-Currently, two official plugins are available:
+This project is a CSR portal for AMP built with React. It allows CSRs to search for customers, and view pertinent information such cas address, payment methods and vehicles on file. The app demonstrates skills in React development, API integration, component-based design, and responsive UI implementation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-- 
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- List of customers is prominently displayed on the home page for quick and easy access 
+- CSRs can search for a customer based on their name, phone, or email address on file. 
+- Select user and view their contact information, billing information, active tickets, and vehicles on file. 
+- Edit any information in responsive cards and dialogs 
+- Loading an error states with user-friendly feedback 
+- Clean and Buildable component structures 
+
+-- 
+
+## Tech Stack 
+
+- **React** - for funcitonal components, hooks, state management
+-**JSON-Sever** - an open-source library that allows you to mimic an "API" server using a .json file.  
+-**Material UI** - for scoped styling
+-**React Router** - provides deeplinks for the different customer's overview page 
+
+## Installation & Running Locally: 
+
+Clone the reposityory and install dependencies: 
+
+git clone <repo-url>
+cd <project-folder>
+npm install
+npm start
+
+To run JSON-Server:  
+
+npm install json-server 
+cd <project-folder>/data/db.json 
+json-server --watch db.json --port 4000 
+
+Open your browser and navigate to: http://localhost:5173 
+
+## Viewing Live Deployment: 
+
+
+
+
+
+## Assumptions & Designs Decisions:
+- Used a static API key for demo purposes; in production, environment variables and secure storage would be used. 
+- Mock data was created using Mockaroo.com. Mockaroo allows you to create schemas and export hundred's of instances of mock data. For the purposes of this assignment, I only used data structures they already had "fake" data available to render. Additional information that didn't pre-exist, such as License Plate number, was ommitted for timing purposes, but would be something likely stored in a production level database and the UI would need to be updated accordingly. 
+- Focused on functionality, accessibility, and clean code structure within the timeframe 
+- Did not implement user authentication or user persistence 
+- Ticket Data and Billing Activity are visible for demonstration purposes, they are tied to each user in the API, but the modules are not interactive 
+- Dashboard, Receipts, and Settings are visible on the Home Page sidebar for demonstration purposes. 
+
+## Possible Improvements / Next Steps 
+- Add unit and integration tests for components and API calls 
+- Implement dark mode toggle
+- Cache API responses to improve performance 
+- Create a details Dashboard that can serve as the Home page when a CSR logs in. 
+- Utilize a global state management library such as Redux or ContextAPI to enhance code readability and application scalability.  
+- Add additional design and styling for a more "branded" look. 

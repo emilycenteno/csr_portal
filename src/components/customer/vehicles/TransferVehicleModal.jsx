@@ -8,7 +8,7 @@ import {
     TableHead,
     Box, InputAdornment, TableContainer, Table, TableBody, TableCell, TableRow
 } from '@mui/material';
-import { updateUserInfo, getAllUsers } from '../../api';
+import { updateUserInfo, allCustomersLoader } from '../../../../services/api';
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -25,7 +25,7 @@ export default function TransferVehicleModal({ open, onClose, carKey, initialDat
     useEffect(() => {
         async function fetchUsers() {
             try {
-                const data = await getAllUsers();
+                const data = await allCustomersLoader();
                 setAllUsers(data);
             } catch (err) {
                 console.log(err);
