@@ -1,28 +1,24 @@
-import CustomerInfoCard from './CustomerInfoCard';
-import EditContactModal from './EditContactModal';
-import VehiclesCard from './VehiclesCard';
-import TicketCard from './TicketCard';
-import ticketData from '../../tests/faux_ticket_data.json';
-import transactionData from '../../tests/mock_activity_data.json';
+
+import { useState } from 'react';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { updateUserInfo, deleteUser } from '../../services/api';
 import {
     Box, Typography, Chip, Stack, Button,
 
 } from "@mui/material";
-import ActivityCard from './ActivityCard';
-import { useLoaderData } from 'react-router-dom';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { updateUserInfo, deleteUser } from '../../api';
-import EditVehiclesModal from './EditVehiclesModal';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import DeleteUserModal from './DeleteUserModal';
-import PaymentInfoCard from './PaymentInfoCard';
-import EditPaymentModal from './EditPaymentModal';
-import DeleteCarModal from './DeleteCarModal';
-import TransferVehicleModal from './TransferVehicleModal';
-import AddNewVehicleModal from './AddNewVehicleModal';
 
-
+import EditVehiclesModal from '../components/customer/vehicles/EditVehiclesModal'
+import DeleteUserModal from '../components/customer/overview/DeleteUserModal'
+import PaymentInfoCard from '../components/customer/billing/PaymentInfoCard';
+import DeleteCarModal from '../components/customer/vehicles/DeleteCarModal';
+import TransferVehicleModal from '../components/customer/vehicles/TransferVehicleModal';
+import AddNewVehicleModal from '../components/customer/vehicles/AddNewVehicleModal';
+import CustomerInfoCard from '../components/customer/contact/CustomerInfoCard';
+import EditContactModal from '../components/customer/contact/EditContactModal';
+import VehiclesCard from '../components/customer/vehicles/VehiclesCard';
+import TicketCard from '../components/customer/overview/TicketCard';
+import ActivityCard from '../components/customer/billing/ActivityCard';
 
 export default function CustomerOverviewPage() {
 

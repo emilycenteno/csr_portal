@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Toolbar } from '@mui/material';
-import NavBar from './components/NavBar';
+import NavBar from './features/NavBar';
 import { useLoaderData, Outlet } from 'react-router-dom';
 
 

@@ -4,10 +4,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from 'react-router-dom';
-import { allCustomersLoader, customerLoader } from './api.js';
+import { allCustomersLoader, customerLoader } from '../services/api.js';
 import Home from './routes/Home.jsx';
 import App from './App.jsx'
-import OverviewPage from './components/customer_overview/OverviewPage.jsx'
+import OverviewPage from './routes/OverviewPage.jsx'
 import ErrorPage from './routes/ErrorPage.jsx';
 
 

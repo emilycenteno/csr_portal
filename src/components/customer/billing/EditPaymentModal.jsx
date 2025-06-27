@@ -8,7 +8,7 @@ import {
     Button
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { updateUserInfo } from '../../api';
+import { updateUserInfo } from '../../../api';
 import { useNavigate } from 'react-router-dom'; 
 
 export default function EditPaymentModal({ open, initialData, onClose, setPaymentModalState }) {

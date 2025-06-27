@@ -220,66 +220,18 @@ export default function UsersList({ usersData }) {
                             onRequestSort={handleRequestSort}
                         />
                         <TableBody>
-                            {visibleRows.map((row, index) => {
-
-                                const statusDisplay = () => {
-                                    let chipColor = '';
-                                    if (row.account_status === 'Active') {
-                                        chipColor = 'success.main'
-                                    }
-                                    else if (row.account_status === 'Inactive') {
-                                        chipColor = 'grey.500'
-                                    }
-                                    else {
-                                        chipColor = 'error.main'
-                                    }
-                                    return chipColor;
-                                };
-
-                                return (
-                                    <TableRow key={row.id}
-                                        hover
-                                        onClick={() => navigate(`/users/${row.id}`)}
-                                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' }, }}
+                            <RenderTableBody visibleRows={visibleRows}/>
+                            {
+                                emptyRows > 0 && (
+                                    <TableRow
+                                        style={{
+                                            height: (53) * emptyRows,
+                                        }}
                                     >
-                                        <TableCell
-                                            component="th"
-                                            id={index}
-                                            scope="row"
-
-
-                                        >
-                                            {row.last_name}
-                                        </TableCell>
-                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.first_name}</TableCell>
-                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.phone_number}</TableCell>
-                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.email}</TableCell>
-                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="center">
-                                            <Chip
-                                                label=<b>{row.account_status}</b>
-                                                size="small"
-                                                sx={{
-                                                    bgcolor: statusDisplay(row),
-                                                    color: 'white',
-                                                    borderRadius: '8px',
-                                                    width: '64px'
-                                                }}
-                                            />
-                                        </TableCell>
-
-
+                                        <TableCell colSpan={6} />
                                     </TableRow>
-                                );
-                            })}
-                            {emptyRows > 0 && (
-                                <TableRow
-                                    style={{
-                                        height: (53) * emptyRows,
-                                    }}
-                                >
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
+                                )
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -295,4 +247,59 @@ export default function UsersList({ usersData }) {
             </Paper>
         </Box>
     );
+}
+
+export function RenderTableBody({visibleRows}) {
+    const navigate = useNavigate();
+    return visibleRows.map((row, index) => {
+
+        const statusDisplay = () => {
+            let chipColor = '';
+            if (row.account_status === 'Active') {
+                chipColor = 'success.main'
+            }
+            else if (row.account_status === 'Inactive') {
+                chipColor = 'grey.500'
+            }
+            else {
+                chipColor = 'error.main'
+            }
+            return chipColor;
+        };
+
+        return (
+            <TableRow key={row.id}
+                hover
+                onClick={() => navigate(`/users/${row.id}`)}
+                sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' }, }}
+            >
+                <TableCell
+                    component="th"
+                    id={index}
+                    scope="row"
+
+
+                >
+                    {row.last_name}
+                </TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.first_name}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.phone_number}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.email}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="center">
+                    <Chip
+                        label=<b>{row.account_status}</b>
+                        size="small"
+                        sx={{
+                            bgcolor: statusDisplay(row),
+                            color: 'white',
+                            borderRadius: '8px',
+                            width: '64px'
+                        }}
+                    />
+                </TableCell>
+
+
+            </TableRow>
+        );
+    })
 }
