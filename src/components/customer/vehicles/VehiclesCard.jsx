@@ -125,6 +125,9 @@ const CarInfo = ({ car, activeCustomer, setActiveCustomer, carKey }) => {
                     initialData={activeCustomer}
                     carKey={carKey}
                     setVehicleModalState={setVehicleModalOpen}
+
+                    activeCustomer={activeCustomer}
+                    setActiveCustomer={setActiveCustomer}
                 />
             }
             {
