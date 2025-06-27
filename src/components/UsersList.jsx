@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -15,8 +14,9 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@mui/utils';
 import { useNavigate } from 'react-router-dom';
-import { TextField } from '@mui/material';
-
+import { TextField, InputAdornment } from '@mui/material';
+import { Chip } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 function descendingComparator(a, b, orderBy) {
@@ -36,42 +36,11 @@ function getComparator(order, orderBy) {
 }
 
 const headCells = [
-    {
-        id: 'last_name',
-        label: 'Last Name',
-        alignment: 'left',
-        sortable: true,
-        width: 125
-    },
-    {
-        id: 'first_name',
-        label: 'First Name',
-        alignment: 'center',
-        sortable: true,
-        width: 125
-    },
-    {
-        id: 'phone',
-        label: 'Phone Number',
-        alignment: 'right',
-        sortable: false,
-        width: 125
-    },
-    {
-        id: 'email',
-        label: 'Email Address',
-        alignment: 'center',
-        sortable: true,
-        width: 200
-    },
-    {
-        id: 'status',
-        label: 'Status',
-        alignment: 'right',
-        sortable: true,
-        width: 50
-    },
-
+    { id: 'last_name', label: 'Last Name', alignment: 'left', sortable: 'true' },
+    { id: 'first_name', label: 'First Name', alignment: 'left', sortable: 'true' },
+    { id: 'phone', label: 'Phone Number', alignment: 'left' },
+    { id: 'email', label: 'Email Address', alignment: 'left', sortable: 'true' },
+    { id: 'status', label: 'Status', alignment: 'center' },
 ];
 
 function EnhancedTableHead(props) {
@@ -88,7 +57,8 @@ function EnhancedTableHead(props) {
                         key={headCell.id}
                         align={headCell.alignment}
                         sortDirection={orderBy === headCell.id ? order : false}
-                        sx={{ width: headCell.width }}
+                        sx={{ py: 0.75, px: 1.5 }}
+
                     >
                         {headCell.sortable ? (<TableSortLabel
                             active={orderBy === headCell.id}
@@ -132,7 +102,7 @@ function EnhancedTableToolbar() {
         >
             <Typography
                 sx={{ flex: '1 1 100%' }}
-                variant="h6"
+                variant="h5"
                 id="tableTitle"
                 component="div"
             >
@@ -213,18 +183,33 @@ export default function UsersList({ usersData }) {
             <Paper sx={{ width: '100%', mb: 2 }}>
                 <EnhancedTableToolbar />
                 <TextField
-                    fullWidth
+                    sx={{
+                        width: '95%',
+                        mb: 2
+                    }}
+                    slotProps={{
+                        input: {
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchIcon color="action" />
+                                </InputAdornment>
+                            ),
+                        },
+                    }}
                     label="Search by name, email, or phone"
                     variant="outlined"
                     value={searchPrompt}
+
                     onChange={(e) => setSearchPrompt(e.target.value)}
-                    sx={{ mb: 2 }}
                 />
-                <TableContainer>
+                <TableContainer sx={{ width: '100%', overflowX: 'auto' }}>
                     <Table
                         sx={{
                             minWidth: 750,
-                            tableLayout: 'auto'
+                            tableLayout: 'fixed',
+                            '& td, & th': {
+                                px: 2,
+                            },
                         }}
                         aria-labelledby="tableTitle"
                         size={'medium'}
@@ -237,23 +222,50 @@ export default function UsersList({ usersData }) {
                         <TableBody>
                             {visibleRows.map((row, index) => {
 
+                                const statusDisplay = () => {
+                                    let chipColor = '';
+                                    if (row.account_status === 'Active') {
+                                        chipColor = 'success.main'
+                                    }
+                                    else if (row.account_status === 'Inactive') {
+                                        chipColor = 'grey.500'
+                                    }
+                                    else {
+                                        chipColor = 'error.main'
+                                    }
+                                    return chipColor;
+                                };
+
                                 return (
                                     <TableRow key={row.id}
                                         hover
                                         onClick={() => navigate(`/users/${row.id}`)}
-                                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' } }}
+                                        sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' }, }}
                                     >
                                         <TableCell
                                             component="th"
                                             id={index}
                                             scope="row"
+
+
                                         >
                                             {row.last_name}
                                         </TableCell>
-                                        <TableCell align="center">{row.first_name}</TableCell>
-                                        <TableCell align="right">{row.phone_number}</TableCell>
-                                        <TableCell align="center">{row.email}</TableCell>
-                                        <TableCell align="right">Active</TableCell>
+                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.first_name}</TableCell>
+                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.phone_number}</TableCell>
+                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.email}</TableCell>
+                                        <TableCell sx={{ py: 0.75, px: 1.5 }} align="center">
+                                            <Chip
+                                                label=<b>{row.account_status}</b>
+                                                size="small"
+                                                sx={{
+                                                    bgcolor: statusDisplay(row),
+                                                    color: 'white',
+                                                    borderRadius: '8px',
+                                                    width: '64px'
+                                                }}
+                                            />
+                                        </TableCell>
 
 
                                     </TableRow>

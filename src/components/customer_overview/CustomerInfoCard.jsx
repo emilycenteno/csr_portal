@@ -5,7 +5,10 @@ import {
     CardActions,
     Button,
     CardHeader,
+    Box,
+    Container
 } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 export default function CustomerInfoCard({ customer, onEdit }) {
@@ -13,21 +16,42 @@ export default function CustomerInfoCard({ customer, onEdit }) {
         <Card sx={{ minHeight: 374 }}>
             <CardHeader
                 title="Contact Information"
+                action={
+                    <Button
+                        variant="contained"
+                        size="small"
+                        startIcon={<EditIcon />}
+                        onClick={onEdit}
+                        sx={{
+                            minWidth: 'unset',
+                            px: 0.75,
+                            py: 0.5,
+                            mt: 0.5,
+                            mr: 0.5,
+                            fontSize: '0.75rem'
+                        }}
+                    >
+                        Edit
+                    </Button>
+                }
             />
-            <CardActions>
-                <Button size="small" onClick={onEdit}>Edit</Button>
-            </CardActions>
             <CardContent>
-                <Typography align='left' variant='body1' component="div">
-                    <b>Name:</b> {customer?.first_name + ' ' + customer?.last_name}
-                </Typography>
-                <Typography align='left' variant='body1' component="div">
-                    <b>Phone Number:</b> {customer?.phone_number}
-                </Typography>
-                <Typography align='left' variant='body1' component="div">
-                    <b>Email:</b> {customer?.email}
-                </Typography >
-                < Address address={customer?.address} />
+                <Box sx={{ py: 2 }}>
+                    <Box sx={{ display: 'flex', mb: 1 }}>
+                        <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Name:</Typography>
+                        <Typography align='left' sx={{ fontWeight: 500 }}>{customer?.first_name + ' ' + customer?.last_name}</Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', mb: 1 }}>
+                        <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Phone:</Typography>
+                        <Typography align='left' sx={{ fontWeight: 500 }}>{customer?.phone_number}</Typography>
+                    </Box><Box sx={{ display: 'flex', mb: 1 }}>
+                        <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Email:</Typography>
+                        <Typography align='left' sx={{ fontWeight: 500 }}>{customer?.email}</Typography>
+                    </Box>
+                    <Address address={customer?.address} />
+                </Box>
+
+
             </CardContent>
 
         </Card>
@@ -36,13 +60,15 @@ export default function CustomerInfoCard({ customer, onEdit }) {
 
 function Address({ address }) {
     return (
-        <Typography align='left' variant="body1" component="div">
-            <b>Address:</b><br />
-            {address?.street} < br />
-            {address?.line_2 ? address?.line_2 : null}
-            {address?.line_2 && < br />}
-            {address?.city + ' ' + address?.state + ', ' + address?.postal_code}
-        </Typography>
+        <Box sx={{ display: 'flex', mb: 2 }}>
+            <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Address:</Typography>
+            <Typography align='left' sx={{ fontWeight: 500 }}>
+                {address?.street} < br />
+                {address?.line_2 ? address?.line_2 : null}
+                {address?.line_2 && < br />}
+                {address?.city + ' ' + address?.state + ', ' + address?.postal_code}
+            </Typography>
+        </Box>
     )
 }
 

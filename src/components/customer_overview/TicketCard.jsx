@@ -12,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function TicketCard({ tickets }) {
+export default function TicketCard({ customer }) {
     return (
         <Card sx={{ minHeight: 374 }}>
             <CardHeader
@@ -31,11 +31,11 @@ export default function TicketCard({ tickets }) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {tickets.map((ticket) => (
-                                <TableRow key={ticket.RefID}>
-                                    <TableCell>{ticket.RefID}</TableCell>
-                                    <TableCell>{ticket.Title}</TableCell>
-                                    <TableCell>{ticket.Status}</TableCell>
+                            {customer.tickets.map((ticket) => (
+                                <TableRow key={ticket.ref_id}>
+                                    <TableCell>{ticket.ref_id}</TableCell>
+                                    <TableCell>{ticket.title}</TableCell>
+                                    <TableCell>{ticket.ticket_status}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -45,3 +45,4 @@ export default function TicketCard({ tickets }) {
         </Card>
     );
 }
+

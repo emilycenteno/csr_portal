@@ -11,13 +11,13 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { ReceiptLong } from '@mui/icons-material';
 import UsersList from '../components/UsersList'
-import SettingsIcon from '@mui/icons-material/Settings';
-import { IconButton, Tooltip, Typography } from '@mui/material';
+import { Typography, Divider } from '@mui/material';
 import { useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import TicketsList from '../components/customer_overview/TicketsList';
-import ticketData from '../tests/faux_ticket_data.json';
-import { Container } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import FeedIcon from '@mui/icons-material/Feed';
 
 
 
@@ -26,7 +26,6 @@ const drawerWidth = 240;
 export default function Home() {
   const [showUsers, setShowUsers] = useState(true);
   const [showTickets, setShowTickets] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -50,7 +49,6 @@ export default function Home() {
             <ListItemButton onClick={() => {
               setShowUsers(true);
               setShowTickets(false);
-              setShowSettings(false);
             }}>
               <ListItemIcon>
                 <GroupIcon />
@@ -64,7 +62,6 @@ export default function Home() {
             <ListItemButton onClick={() => {
               setShowUsers(false);
               setShowTickets(true);
-              setShowSettings(false);
             }}>
               <ListItemIcon>
                 <ReceiptLong />
@@ -74,13 +71,24 @@ export default function Home() {
               </ListItemText>
             </ListItemButton>
           </ListItem>
+
+          <Divider sx={{ width: '90%', mx: 'auto' }} />
+    
+
+          <ListItem key='dashboard'>
+            <ListItemButton>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText>
+                Dashboard
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
           <ListItem key='settings'>
-            <ListItemButton onClick={() => {
-              setShowUsers(false);
-              setShowTickets(false);
-              setShowSettings(true);
-            }}>
-              <ListItemIcon >
+            <ListItemButton>
+              <ListItemIcon>
                 <SettingsIcon />
               </ListItemIcon>
               <ListItemText>
@@ -88,29 +96,42 @@ export default function Home() {
               </ListItemText>
             </ListItemButton>
           </ListItem>
+
+          <ListItem key='reports'>
+            <ListItemButton>
+              <ListItemIcon>
+                <FeedIcon />
+              </ListItemIcon>
+              <ListItemText>
+                Reports
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+
+
+
         </List>
       </Drawer>
 
       <Box
         component="main"
         sx={{
+          flexGrow: 1,
           p: 3,
-          minHeight: '100vh',
-        }}>
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh'
+        }}
+      >
 
         {
           showUsers &&
           <UsersList usersData={useLoaderData()} />
         }
         {
-          showTickets && <TicketsList tickets={ticketData} />
+          showTickets && <TicketsList customers={useLoaderData()} />
         }
-        {
-          showSettings &&
-          <Typography variant="h2">
-            Stay Tuned ...
-          </Typography>
-        }
+
 
       </Box>
     </Box >

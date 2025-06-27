@@ -1,0 +1,233 @@
+{
+  "users": [
+    {
+      "id": "6ea398f7-13b7-4861-8ec5-389118442618",
+      "account_status": "Active",
+      "tier": "Basic",
+      "first_name": "Julienne",
+      "last_name": "Keitch",
+      "email": "jkeitch0@domainmarket.com",
+      "phone_number": "727-245-2250",
+      "address": {
+        "street": "7 Daystar Pass",
+        "line_2": null,
+        "city": "Bradenton",
+        "state": "FL",
+        "postal_code": "34210"
+      },
+      "cars": [
+        {
+          "make": "Porsche",
+          "model": "911",
+          "year": 2008,
+          "vin": "1FMEU8FE3AU481120"
+        }
+      ],
+      "credit_card": {
+        "number": "5048378922586774",
+        "type": "mastercard",
+        "zip": "25331"
+      },
+      "tickets": [],
+      "transaction_history": [
+        {
+          "date": "8/25/2024",
+          "card": "3551373818104687",
+          "amount": "$46.21",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "12/25/2024",
+          "card": "3588105812901610",
+          "amount": "$16.91",
+          "location": "Online",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "9/24/2024",
+          "card": "374622135618311",
+          "amount": "$29.80",
+          "location": "Online",
+          "activity": "renewal_auto_monthly"
+        },
+        {
+          "date": "9/16/2024",
+          "card": "3534546491311750",
+          "amount": "$29.27",
+          "location": "In Store",
+          "activity": "wax-add-on"
+        }
+      ]
+    },
+    {
+      "id": "98cff24c-282c-40a8-96aa-13cf3a49283d",
+      "account_status": "Inactive",
+      "tier": null,
+      "first_name": "Bayard",
+      "last_name": "Mutton",
+      "email": "bmutton1@skype.com",
+      "phone_number": "614-955-9794",
+      "address": {
+        "street": "7598 Gateway Way",
+        "line_2": null,
+        "city": "Columbus",
+        "state": "OH",
+        "postal_code": "43226"
+      },
+      "cars": [
+        {
+          "make": "GMC",
+          "model": "Sierra 1500",
+          "year": 2001,
+          "vin": "WAUML44D42N920004"
+        },
+        {
+          "make": "Saturn",
+          "model": "Aura",
+          "year": 2009,
+          "vin": "1FTEW1CW8AF479225"
+        },
+        {
+          "make": "Spooky",
+          "model": "Spooder v6",
+          "year": "2025",
+          "vin": "1234567890",
+          "subscription": "Premium Plus"
+        }
+      ],
+      "credit_card": {
+        "number": "5108756992198587",
+        "type": "mastercard",
+        "zip": "68117"
+      },
+      "tickets": [
+        {
+          "ref_id": "94962",
+          "title": "Change Contact Information",
+          "ticket_status": "Resolved",
+          "reported_on": "2025-04-12 04:02:57",
+          "last_update": "2025-05-01 13:41:12",
+          "description": "Here is a more detailed description of the ticket.",
+          "comments": "Here will be any additional comments left by the customer service representatives if needed."
+        },
+        {
+          "ref_id": "93770",
+          "title": "Edit/Remove Vehicle",
+          "ticket_status": "In Progress",
+          "reported_on": "2024-10-14 00:26:31",
+          "last_update": "2024-10-23 11:03:51",
+          "description": "Here is a more detailed description of the ticket.",
+          "comments": "Here will be any additional comments left by the customer service representatives if needed."
+        }
+      ],
+      "transaction_history": [
+        {
+          "date": "11/23/2024",
+          "card": "3570825077811325",
+          "amount": "$30.36",
+          "location": "In Store",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "5/19/2025",
+          "card": "3581266245766959",
+          "amount": "$19.46",
+          "location": "Online",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "8/28/2024",
+          "card": "3578647920233453",
+          "amount": "$14.53",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "2/23/2025",
+          "card": "3574393748351821",
+          "amount": "$17.70",
+          "location": "Online",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "3/22/2025",
+          "card": "3561723365503863",
+          "amount": "$12.02",
+          "location": "Online",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "10/26/2024",
+          "card": "5100178009522329",
+          "amount": "$18.80",
+          "location": "In Store",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "9/23/2024",
+          "card": "5100179980339022",
+          "amount": "$12.49",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "5/8/2025",
+          "card": "5466899686505018",
+          "amount": "$19.22",
+          "location": "In Store",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "1/12/2025",
+          "card": "374622052385241",
+          "amount": "$16.86",
+          "location": "Online",
+          "activity": "renewal_auto_monthly"
+        },
+        {
+          "date": "7/26/2024",
+          "card": "4175005836690818",
+          "amount": "$34.20",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "6/14/2025",
+          "card": "3556283447861562",
+          "amount": "$47.74",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        },
+        {
+          "date": "12/16/2024",
+          "card": "3587943176349120",
+          "amount": "$20.06",
+          "location": "Online",
+          "activity": "wax-add-on"
+        },
+        {
+          "date": "3/21/2025",
+          "card": "30053120109908",
+          "amount": "$22.68",
+          "location": "Online",
+          "activity": "renewal_auto_monthly"
+        },
+        {
+          "date": "7/5/2024",
+          "card": "5536283257301931",
+          "amount": "$30.63",
+          "location": "Online",
+          "activity": "renewal_auto_monthly"
+        },
+        {
+          "date": "1/31/2025",
+          "card": "3575105940442748",
+          "amount": "$47.03",
+          "location": "Online",
+          "activity": "membership_upgrade"
+        }
+      ]
+    }
+  ]
+}
