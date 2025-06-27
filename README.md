@@ -4,7 +4,6 @@
 
 This project is a CSR portal for AMP built with React. It allows CSRs to search for customers, and view pertinent information such cas address, payment methods and vehicles on file. The app demonstrates skills in React development, API integration, component-based design, and responsive UI implementation.
 
--- 
 
 ## Features
 
@@ -15,7 +14,6 @@ This project is a CSR portal for AMP built with React. It allows CSRs to search 
 - Loading an error states with user-friendly feedback 
 - Clean and Buildable component structures 
 
--- 
 
 ## Tech Stack 
 
