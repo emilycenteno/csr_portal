@@ -20,9 +20,9 @@ This project is a CSR portal for AMP built with React. It allows CSRs to search 
 ## Tech Stack 
 
 - **React** - for funcitonal components, hooks, state management
--**JSON-Sever** - an open-source library that allows you to mimic an "API" server using a .json file.  
--**Material UI** - for scoped styling
--**React Router** - provides deeplinks for the different customer's overview page 
+- **JSON-Sever** - an open-source library that allows you to mimic an "API" server using a .json file.
+- **Material UI** - for scoped styling
+- **React Router** - provides deeplinks for the different customer's overview page 
 
 ## Installation & Running Locally: 
 
@@ -41,7 +41,7 @@ json-server --watch db.json --port 4000
 
 3. Open your browser and navigate to: http://localhost:5173 
 
-** To view JSON data in browser, navigate to: http://localhost:4000 
+- To view JSON data in browser, navigate to: http://localhost:4000 
 
 ## Viewing Live Deployment: 
 
