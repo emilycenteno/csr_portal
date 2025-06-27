@@ -12,7 +12,7 @@ import { updateUserInfo } from '../../../../services/api';
 import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
-export default function AddNewVehicleModal({ initialData, onClose, setAddNewVehicleState }) {
+const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState }) => {
     const navigate = useNavigate();
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
@@ -101,3 +101,5 @@ export default function AddNewVehicleModal({ initialData, onClose, setAddNewVehi
         </Dialog>
     );
 }
+
+export default AddNewVehicleModal;

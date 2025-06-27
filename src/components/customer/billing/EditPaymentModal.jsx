@@ -9,9 +9,9 @@ import {
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { updateUserInfo } from '../../../api';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 
-export default function EditPaymentModal({ open, initialData, onClose, setPaymentModalState }) {
+const EditPaymentModal = ({ open, initialData, onClose, setPaymentModalState }) => {
     const navigate = useNavigate();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -80,3 +80,5 @@ export default function EditPaymentModal({ open, initialData, onClose, setPaymen
         </Dialog>
     );
 }
+
+export default EditPaymentModal;

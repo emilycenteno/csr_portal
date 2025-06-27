@@ -13,7 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function TicketsList({ customers }) {
+const TicketsList = ({ customers }) => {
     const navigate = useNavigate();
 
     const openTickets = customers.flatMap(customer =>
@@ -65,3 +65,5 @@ export default function TicketsList({ customers }) {
         </Card>
     );
 }
+
+export default TicketsList;

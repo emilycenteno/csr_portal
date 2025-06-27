@@ -15,43 +15,7 @@ import Divider from '@mui/material/Divider';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
 
-export default function VehiclesCard({ customer, onCreate, onEdit, onDelete, onTransfer }) {
-    return (
-        <Card>
-            <CardHeader
-                title="User Vehicles"
-                action={
-                    <Button
-                        variant="contained"
-                        size="small"
-                        startIcon={<EditIcon />}
-                        onClick={onCreate}
-                        sx={{
-                            minWidth: 'unset',
-                            px: 0.75,
-                            py: 0.5,
-                            mt: 0.5,
-                            mr: 0.5,
-                            fontSize: '0.75rem'
-                        }}
-                    >
-                        Add New Vehicle
-                    </Button>
-                }
-            />
-            <CardContent>
-                {customer?.cars?.map((car, index) => (
-                    <>
-                        <CarInfo key={index} car={car} onEdit={() => onEdit(index)} onDelete={() => onDelete(index)} onTransfer={() => onTransfer(index)} />
-                        <Divider />
-                    </>))}
-            </CardContent>
-        </Card>
-    );
-
-}
-
-function CarInfo({ car, onEdit, onDelete, onTransfer }) {
+const CarInfo = ({ car, onEdit, onDelete, onTransfer }) => {
     return (
         <Container>
             <Box sx={{ py: 2 }}>
@@ -130,3 +94,41 @@ function CarInfo({ car, onEdit, onDelete, onTransfer }) {
         </Container>
     );
 }
+
+const VehiclesCard = ({ customer, onCreate, onEdit, onDelete, onTransfer }) => {
+    return (
+        <Card>
+            <CardHeader
+                title="User Vehicles"
+                action={
+                    <Button
+                        variant="contained"
+                        size="small"
+                        startIcon={<EditIcon />}
+                        onClick={onCreate}
+                        sx={{
+                            minWidth: 'unset',
+                            px: 0.75,
+                            py: 0.5,
+                            mt: 0.5,
+                            mr: 0.5,
+                            fontSize: '0.75rem'
+                        }}
+                    >
+                        Add New Vehicle
+                    </Button>
+                }
+            />
+            <CardContent>
+                {customer?.cars?.map((car, index) => (
+                    <>
+                        <CarInfo key={index} car={car} onEdit={() => onEdit(index)} onDelete={() => onDelete(index)} onTransfer={() => onTransfer(index)} />
+                        <Divider />
+                    </>))}
+            </CardContent>
+        </Card>
+    );
+
+}
+
+export default VehiclesCard;

@@ -10,7 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { updateUserInfo } from '../../../../services/api';
 
-export default function DeleteCarModal({ carKey, open, onClose, initialData, setDeleteCarModalState }) {
+const DeleteCarModal = ({ carKey, open, onClose, initialData, setDeleteCarModalState }) => {
     const navigate = useNavigate();
     const onSubmit = async () => {
         let newCars = initialData.cars.filter((_, index) => index !== carKey);
@@ -41,3 +41,5 @@ export default function DeleteCarModal({ carKey, open, onClose, initialData, set
         </Dialog>
     )
 }
+
+export default DeleteCarModal;

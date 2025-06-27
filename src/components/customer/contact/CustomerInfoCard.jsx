@@ -10,8 +10,32 @@ import {
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
+const CustomerInfoCard = ({ customer, onEdit }) => {
 
-export default function CustomerInfoCard({ customer, onEdit }) {
+    const Address = ({ address }) => {
+        return (
+            <Box sx={{ display: 'flex', mb: 2 }}>
+                <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Address:</Typography>
+                <Typography align='left' sx={{ fontWeight: 500 }}>
+                    {address?.street} < br />
+                    {address?.line_2 ? address?.line_2 : null}
+                    {address?.line_2 && < br />}
+                    {address?.city + ' ' + address?.state + ', ' + address?.postal_code}
+                </Typography>
+            </Box>
+        )
+    }
+
+    const PaymentInfo = ({ creditCard }) => {
+        return (
+            <p>
+                <b>Card Type:</b> {creditCard.type} <br />
+                <b>Card Number: </b> {creditCard.number} <br />
+                <b>Billing Zip: </b> {creditCard.zip}
+            </p>
+        )
+    }
+
     return (
         <Card sx={{ minHeight: 374 }}>
             <CardHeader
@@ -58,26 +82,4 @@ export default function CustomerInfoCard({ customer, onEdit }) {
     );
 }
 
-function Address({ address }) {
-    return (
-        <Box sx={{ display: 'flex', mb: 2 }}>
-            <Typography color="text.secondary" align='left' sx={{ width: '110px' }}>Address:</Typography>
-            <Typography align='left' sx={{ fontWeight: 500 }}>
-                {address?.street} < br />
-                {address?.line_2 ? address?.line_2 : null}
-                {address?.line_2 && < br />}
-                {address?.city + ' ' + address?.state + ', ' + address?.postal_code}
-            </Typography>
-        </Box>
-    )
-}
-
-function PaymentInfo({ creditCard }) {
-    return (
-        <p>
-            <b>Card Type:</b> {creditCard.type} <br />
-            <b>Card Number: </b> {creditCard.number} <br />
-            <b>Billing Zip: </b> {creditCard.zip}
-        </p>
-    )
-}
+export default CustomerInfoCard;

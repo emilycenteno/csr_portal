@@ -14,7 +14,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useState } from 'react';
 import { ArrowDropDown } from '@mui/icons-material';
 
-export default function PaymentInfoCard({ creditCard, onEdit }) {
+const PaymentInfoCard = ({ creditCard, onEdit }) => {
     const [expand, setExpand] = useState();
     return (
         <Card>
@@ -63,3 +63,5 @@ export default function PaymentInfoCard({ creditCard, onEdit }) {
         </Card>
     );
 }
+
+export default PaymentInfoCard;

@@ -12,7 +12,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-export default function ActivityCard({ transactions }) {
+const ActivityCard = ({ transactions }) => {
     return (
         <Card sx={{ minHeight: 374 }}>
             <CardHeader
@@ -35,11 +35,11 @@ export default function ActivityCard({ transactions }) {
                         <TableBody>
                             {transactions.map((transaction) => (
                                 <TableRow key={transaction.date}>
-                                    <TableCell align = 'left'>{transaction.date}</TableCell>
-                                    <TableCell  align = 'left'sx = {{fontStyle: 'italic'}}>{transaction.activity}</TableCell>
-                                    <TableCell align = 'left'>{transaction.amount}</TableCell>
-                                    <TableCell align = 'left'>{transaction.location}</TableCell>
-                                    <TableCell align = 'left'sx = {{fontStyle: 'italic'}}>{"**** **** **** " + transaction.card.slice(-4)}</TableCell>
+                                    <TableCell align='left'>{transaction.date}</TableCell>
+                                    <TableCell align='left' sx={{ fontStyle: 'italic' }}>{transaction.activity}</TableCell>
+                                    <TableCell align='left'>{transaction.amount}</TableCell>
+                                    <TableCell align='left'>{transaction.location}</TableCell>
+                                    <TableCell align='left' sx={{ fontStyle: 'italic' }}>{"**** **** **** " + transaction.card.slice(-4)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -49,3 +49,5 @@ export default function ActivityCard({ transactions }) {
         </Card>
     );
 }
+
+export default ActivityCard;

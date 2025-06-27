@@ -19,7 +19,7 @@ import { Chip } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 
-function descendingComparator(a, b, orderBy) {
+const descendingComparator = (a, b, orderBy) => {
     if (b[orderBy] < a[orderBy]) {
         return -1;
     }
@@ -29,7 +29,7 @@ function descendingComparator(a, b, orderBy) {
     return 0;
 }
 
-function getComparator(order, orderBy) {
+const getComparator = (order, orderBy) => {
     return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
@@ -43,7 +43,7 @@ const headCells = [
     { id: 'status', label: 'Status', alignment: 'center' },
 ];
 
-function EnhancedTableHead(props) {
+const EnhancedTableHead = (props) => {
     const { order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
         onRequestSort(event, property);
@@ -90,7 +90,7 @@ EnhancedTableHead.propTypes = {
 
 };
 
-function EnhancedTableToolbar() {
+const EnhancedTableToolbar = () => {
     return (
         <Toolbar
             sx={[
@@ -116,13 +116,67 @@ EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
-export default function UsersList({ usersData }) {
+const RenderTableBody = ({ visibleRows }) => {
+    const navigate = useNavigate();
+    return visibleRows.map((row, index) => {
+
+        const statusDisplay = () => {
+            let chipColor = '';
+            if (row.account_status === 'Active') {
+                chipColor = 'success.main'
+            }
+            else if (row.account_status === 'Inactive') {
+                chipColor = 'grey.500'
+            }
+            else {
+                chipColor = 'error.main'
+            }
+            return chipColor;
+        };
+
+        return (
+            <TableRow key={row.id}
+                hover
+                onClick={() => navigate(`/users/${row.id}`)}
+                sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' }, }}
+            >
+                <TableCell
+                    component="th"
+                    id={index}
+                    scope="row"
+
+
+                >
+                    {row.last_name}
+                </TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.first_name}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.phone_number}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.email}</TableCell>
+                <TableCell sx={{ py: 0.75, px: 1.5 }} align="center">
+                    <Chip
+                        label=<b>{row.account_status}</b>
+                        size="small"
+                        sx={{
+                            bgcolor: statusDisplay(row),
+                            color: 'white',
+                            borderRadius: '8px',
+                            width: '64px'
+                        }}
+                    />
+                </TableCell>
+
+
+            </TableRow>
+        );
+    })
+}
+
+const UsersList = ({ usersData }) => {
     if (!Array.isArray(usersData)) {
         return <div>Loading or no users found</div>;
     }
 
 
-    const navigate = useNavigate();
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('calories');
     const [page, setPage] = React.useState(0);
@@ -178,6 +232,7 @@ export default function UsersList({ usersData }) {
             .sort(getComparator(order, orderBy))
             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
     }, [searchPrompt, usersData, order, orderBy, page, rowsPerPage]);
+
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
@@ -199,7 +254,6 @@ export default function UsersList({ usersData }) {
                     label="Search by name, email, or phone"
                     variant="outlined"
                     value={searchPrompt}
-
                     onChange={(e) => setSearchPrompt(e.target.value)}
                 />
                 <TableContainer sx={{ width: '100%', overflowX: 'auto' }}>
@@ -220,7 +274,7 @@ export default function UsersList({ usersData }) {
                             onRequestSort={handleRequestSort}
                         />
                         <TableBody>
-                            <RenderTableBody visibleRows={visibleRows}/>
+                            <RenderTableBody visibleRows={visibleRows} />
                             {
                                 emptyRows > 0 && (
                                     <TableRow
@@ -249,57 +303,4 @@ export default function UsersList({ usersData }) {
     );
 }
 
-export function RenderTableBody({visibleRows}) {
-    const navigate = useNavigate();
-    return visibleRows.map((row, index) => {
-
-        const statusDisplay = () => {
-            let chipColor = '';
-            if (row.account_status === 'Active') {
-                chipColor = 'success.main'
-            }
-            else if (row.account_status === 'Inactive') {
-                chipColor = 'grey.500'
-            }
-            else {
-                chipColor = 'error.main'
-            }
-            return chipColor;
-        };
-
-        return (
-            <TableRow key={row.id}
-                hover
-                onClick={() => navigate(`/users/${row.id}`)}
-                sx={{ cursor: 'pointer', '&:hover': { backgroundColor: '#f5f5f5' }, }}
-            >
-                <TableCell
-                    component="th"
-                    id={index}
-                    scope="row"
-
-
-                >
-                    {row.last_name}
-                </TableCell>
-                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.first_name}</TableCell>
-                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.phone_number}</TableCell>
-                <TableCell sx={{ py: 0.75, px: 1.5 }} align="left">{row.email}</TableCell>
-                <TableCell sx={{ py: 0.75, px: 1.5 }} align="center">
-                    <Chip
-                        label=<b>{row.account_status}</b>
-                        size="small"
-                        sx={{
-                            bgcolor: statusDisplay(row),
-                            color: 'white',
-                            borderRadius: '8px',
-                            width: '64px'
-                        }}
-                    />
-                </TableCell>
-
-
-            </TableRow>
-        );
-    })
-}
+export default UsersList;
