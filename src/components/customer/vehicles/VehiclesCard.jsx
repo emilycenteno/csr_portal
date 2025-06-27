@@ -22,12 +22,10 @@ import AddNewVehicleModal from './AddNewVehicleModal';
 import { useState } from 'react';
 
 
-const CarInfo = ({ car, activeCustomer, carKey }) => {
+const CarInfo = ({ car, activeCustomer, setActiveCustomer, carKey }) => {
 
     const [isVehicleModalOpen, setVehicleModalOpen] = useState(false);
     const [isTransferVehicleModalOpen, setTransferVehicleModalOpen] = useState(false);
-
-
     const [isDeleteCarModalOpen, setDeleteCarModalOpen] = useState(false);
 
     const openCarModalData = () => {
@@ -135,7 +133,11 @@ const CarInfo = ({ car, activeCustomer, carKey }) => {
                     onClose={() => setDeleteCarModalOpen(false)}
                     initialData={activeCustomer}
                     carKey={carKey}
-                    setDeleteCarModalState={setDeleteCarModalOpen} />
+                    setDeleteCarModalState={setDeleteCarModalOpen}
+                    aciveCustomer={activeCustomer}
+                    setActiveCustomer={setActiveCustomer}
+
+                />
             }
             {
                 isTransferVehicleModalOpen && <TransferVehicleModal
@@ -143,13 +145,16 @@ const CarInfo = ({ car, activeCustomer, carKey }) => {
                     onClose={() => setTransferVehicleModalOpen(false)}
                     initialData={activeCustomer}
                     carKey={carKey}
-                    setTransferVehicleModalState={setTransferVehicleModalOpen} />
+                    setTransferVehicleModalState={setTransferVehicleModalOpen}
+                    aciveCustomer={activeCustomer}
+                    setActiveCustomer={setActiveCustomer}
+                />
             }
         </>
     );
 }
 
-const VehiclesCard = ({ activeCustomer }) => {
+const VehiclesCard = ({ activeCustomer, setActiveCustomer }) => {
     const [isAddNewCarModalOpen, setAddNewCarModalOpen] = useState(false);
 
     return (
@@ -179,7 +184,7 @@ const VehiclesCard = ({ activeCustomer }) => {
                 <CardContent>
                     {activeCustomer?.cars?.map((car, index) => (
                         <>
-                            <CarInfo key={index} car={car} carKey={index} activeCustomer={activeCustomer} />
+                            <CarInfo key={index} car={car} carKey={index} activeCustomer={activeCustomer} setActiveCustomer={setActiveCustomer} />
                             <Divider />
                         </>))}
                 </CardContent>
@@ -190,7 +195,9 @@ const VehiclesCard = ({ activeCustomer }) => {
                     open={isAddNewCarModalOpen}
                     onClose={() => setAddNewCarModalOpen(false)}
                     initialData={activeCustomer}
-                    setAddNewVehicleState={setAddNewCarModalOpen} />
+                    setAddNewVehicleState={setAddNewCarModalOpen}
+                    setActiveCustomer={setActiveCustomer}
+                />
             }
         </>
     );

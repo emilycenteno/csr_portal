@@ -13,11 +13,12 @@ import { useState, useEffect } from 'react';
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 
+import { getUser } from '../../../../services/api';
+
 // Do not split into seperate component - this is not used anywhere else 
 const UsersTable = ({ users, setSelectedUser }) => {
     const [searchPrompt, setSearchPrompt] = React.useState('');
     const [selectedCell, setSelectedCell] = React.useState(null);
-    console.log(users)
 
     const visibleRows = React.useMemo(() => {
         const filtered = users.filter((user) => {
@@ -115,9 +116,14 @@ const UsersTable = ({ users, setSelectedUser }) => {
     );
 }
 
-const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferVehicleModalState }) => {
+const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferVehicleModalState, activeCustomer, setActiveCustomer }) => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [allUsers, setAllUsers] = useState([]);
+
+    const refreshUser = async (id) => {
+        const newCustomerData = await getUser(id);
+        setActiveCustomer(newCustomerData);
+    }
 
     useEffect(() => {
         async function fetchUsers() {
@@ -140,6 +146,7 @@ const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferV
         };
 
         const res = await updateUserInfo(newCustomer, initialData);
+        await refreshUser(newCustomer.id);
 
         if (!res.ok) {
             alert('Transfer failed.');
