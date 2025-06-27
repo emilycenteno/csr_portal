@@ -9,11 +9,9 @@ import {
 } from '@mui/material';
 import { useForm, Controller } from 'react-hook-form';
 import { updateUserInfo } from '../../../../services/api';
-import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
 const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState }) => {
-    const navigate = useNavigate();
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
     });
@@ -31,12 +29,9 @@ const AddNewVehicleModal = ({ initialData, onClose, setAddNewVehicleState }) => 
 
         if (res.ok) {
             setAddNewVehicleState(false);
-            navigate(0);
-            // navigate(0); // Todo: replace with proper state handling 
         } else {
             alert('Update failed');
             setAddNewVehicleState(false);
-            navigate(0);
         }
     };
 

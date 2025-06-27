@@ -12,7 +12,6 @@ import { updateUserInfo, allCustomersLoader } from '../../../../services/api';
 import { useState, useEffect } from 'react';
 import * as React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
 
 // Do not split into seperate component - this is not used anywhere else 
 const UsersTable = ({ users, setSelectedUser }) => {
@@ -120,8 +119,6 @@ const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferV
     const [selectedUser, setSelectedUser] = useState(null);
     const [allUsers, setAllUsers] = useState([]);
 
-    const navigate = useNavigate();
-
     useEffect(() => {
         async function fetchUsers() {
             try {
@@ -147,8 +144,6 @@ const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferV
         if (!res.ok) {
             alert('Transfer failed.');
             setTransferVehicleModalState(false);
-            navigate(0);
-
         }
     };
 
@@ -170,7 +165,6 @@ const TransferVehicleModal = ({ open, onClose, carKey, initialData, setTransferV
         addCar()
             .then(() => removeCar())
             .then(() => setTransferVehicleModalState(false))
-            .then(() => navigate(0))
             .catch(error => alert(error));
     }
 

@@ -7,11 +7,9 @@ import {
     TextField,
     Button
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 import { updateUserInfo } from '../../../../services/api';
 
 const DeleteCarModal = ({ carKey, open, onClose, initialData, setDeleteCarModalState }) => {
-    const navigate = useNavigate();
     const onSubmit = async () => {
         let newCars = initialData.cars.filter((_, index) => index !== carKey);
 
@@ -24,12 +22,9 @@ const DeleteCarModal = ({ carKey, open, onClose, initialData, setDeleteCarModalS
 
         if (res.ok) {
             setDeleteCarModalState(false);
-            navigate(0);
-
         } else {
             alert('Deletion failed');
             setDeleteCarModalState(false);
-            navigate(0);
         }
     };
     return (

@@ -12,7 +12,10 @@ import { useState } from 'react';
 const DeleteUserModal = ({ open, initialData, onClose, onSubmit }) => {
     const [verification, setVerification] = useState('');
     const fullName = `${initialData.first_name} ${initialData.last_name}`;
-    const handleSubmit = () => verification === fullName ? onSubmit() : alert("ERROR!");
+    const handleSubmit = () => {
+        verification === fullName ? onSubmit() : alert("ERROR!");
+    }
+
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>{`Delete ${fullName}`}</DialogTitle>

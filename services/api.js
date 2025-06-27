@@ -15,6 +15,15 @@ export async function updateUserInfo(data, customer) {
     return res;
 };
 
+export async function getUser(customerId) {
+    const res = await fetch(`${url}/${customerId}`);
+    if (!res.ok) {
+        throw new Response('Not Found', { status: res.status });
+    }
+
+    const user = await res.json();
+    return user;
+}
 
 // Fetches and returns customer data based on id
 export async function customerLoader({ params }) {
