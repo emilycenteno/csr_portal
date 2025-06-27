@@ -12,38 +12,39 @@ import { updateUserInfo } from '../../api';
 import { useNavigate } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem, FormHelperText } from '@mui/material';
 
-export default function EditVehiclesModal({ carKey, initialData, onClose, setVehicleModalState }) {
+export default function AddNewVehicleModal({ initialData, onClose, setAddNewVehicleState }) {
     const navigate = useNavigate();
 
     const { register, control, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: initialData.cars[carKey],
     });
 
     const submitHandler = async (data) => {
-        let newCars = [...initialData.cars];
-        newCars[carKey] = data;
+
         let newCustomer = {
             ...initialData,
-            cars: newCars
+            cars: [
+                ...initialData.cars,
+                data
+            ]
         }
         const res = await updateUserInfo(newCustomer, initialData)
 
         if (res.ok) {
-            setVehicleModalState(false);
+            setAddNewVehicleState(false);
             navigate(0);
             // navigate(0); // Todo: replace with proper state handling 
         } else {
             alert('Update failed');
-            setVehicleModalState(false);
+            setAddNewVehicleState(false);
             navigate(0);
         }
     };
 
     return (
         <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Edit Vehicle Information</DialogTitle>
+            <DialogTitle>Add New Vehicle Information</DialogTitle>
             <DialogContent>
-                <form id="edit-vehicles-form" onSubmit={handleSubmit(submitHandler)}>
+                <form id="add-vehicles-form" onSubmit={handleSubmit(submitHandler)}>
                     <Controller
                         name="subscription"
                         control={control}
@@ -95,7 +96,7 @@ export default function EditVehiclesModal({ carKey, initialData, onClose, setVeh
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose}>Cancel</Button>
-                <Button type="submit" form="edit-vehicles-form">Save</Button>
+                <Button type="submit" form="add-vehicles-form">Save</Button>
             </DialogActions>
         </Dialog>
     );

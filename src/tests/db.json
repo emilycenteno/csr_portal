@@ -1,6 +1,135 @@
 {
   "users": [
     {
+      "id": "1",
+      "first_name": "Gabriellia",
+      "last_name": "Newby",
+      "email": "gnewby0@aboutads.info",
+      "phone_number": "571-255-1073",
+      "address": {
+        "street": "81 Havey Crossing",
+        "line_2": "2nd Floor",
+        "city": "Springfield",
+        "state": "VA",
+        "postal_code": "22156"
+      },
+      "cars": [
+        {
+          "make": "BMW",
+          "model": "Z4",
+          "year": 2010,
+          "vin": "1G6KY54943U186407"
+        },
+        {
+          "make": "Dodge",
+          "model": "Ram 1500",
+          "year": 2010,
+          "vin": "JH4CU2F60CC966083"
+        },
+        {
+          "make": "Land Rover",
+          "model": "Range Rover",
+          "year": 2007,
+          "vin": "5J6TF2H59FL927751"
+        },
+        {
+          "make": "Pontiac",
+          "model": "Grand Prix",
+          "year": 1989,
+          "vin": "2B3CA2CV6AH616104"
+        }
+      ],
+      "credit_card": {
+        "number": "5048378025981633",
+        "type": "mastercard",
+        "zip": "53790"
+      }
+    },
+    {
+      "id": "2",
+      "first_name": "Silvio",
+      "last_name": "Alcide",
+      "email": "salcide1@godaddy.com",
+      "phone_number": "405-620-0838",
+      "address": {
+        "street": "3 Boyd Park",
+        "line_2": null,
+        "city": "Oklahoma City",
+        "state": "OK",
+        "postal_code": "73179"
+      },
+      "cars": [
+        {
+          "make": "Lexus",
+          "model": "IS",
+          "year": 2009,
+          "vin": "1FM5K7B83DG017943"
+        },
+        {
+          "make": "Volvo",
+          "model": "S80",
+          "year": 2003,
+          "vin": "2C3CDXJGXFH204061"
+        },
+        {
+          "make": "Mercedes-Benz",
+          "model": "S-Class",
+          "year": 1988,
+          "vin": "2G4GS5EV5C9353169"
+        },
+        {
+          "make": "Ford",
+          "model": "Mustang",
+          "year": 2004,
+          "vin": "1GYS4CEF4DR557971"
+        }
+      ],
+      "credit_card": {
+        "number": "5048370613233212",
+        "type": "mastercard",
+        "zip": "02109"
+      }
+    },
+    {
+      "id": "3",
+      "first_name": "Delano",
+      "last_name": "McGawn",
+      "email": "dmcgawn2@google.com.hk",
+      "phone_number": "512-636-7559",
+      "address": {
+        "street": "1009 Anzinger Park",
+        "line_2": null,
+        "city": "Austin",
+        "state": "TX",
+        "postal_code": "78710"
+      },
+      "cars": [
+        {
+          "make": "Mercedes-Benz",
+          "model": "SL-Class",
+          "year": 1997,
+          "vin": "WBAUP9C58CV233153"
+        },
+        {
+          "make": "Chevrolet",
+          "model": "Caprice Classic",
+          "year": 1996,
+          "vin": "WAUWFAFL4AA902904"
+        },
+        {
+          "make": "Plymouth",
+          "model": "Breeze",
+          "year": 1998,
+          "vin": "5NPEB4AC0CH271924"
+        }
+      ],
+      "credit_card": {
+        "number": "5108758448148646",
+        "type": "mastercard",
+        "zip": "29424"
+      }
+    },
+    {
       "id": "4",
       "first_name": "Erinn",
       "last_name": "O'Crevy",
@@ -64,51 +193,6 @@
         "number": "5108757420895026",
         "type": "mastercard",
         "zip": "77005"
-      }
-    },
-    {
-      "id": "6",
-      "first_name": "Kristal",
-      "last_name": "Centeno",
-      "email": "kzold5@bigcartel.com",
-      "phone_number": "520-425-2912",
-      "address": {
-        "street": "725 Myrtle Park",
-        "line_2": null,
-        "city": "Tucson",
-        "state": "AZ",
-        "postal_code": "85710"
-      },
-      "cars": [
-        {
-          "make": "Dodge",
-          "model": "Caravan",
-          "year": 1993,
-          "vin": "WDDEJ7EB7BA295610"
-        },
-        {
-          "make": "BMW",
-          "model": "5 Series",
-          "year": 2000,
-          "vin": "4T1BF3EK3AU564136"
-        },
-        {
-          "make": "Buick",
-          "model": "LeSabre",
-          "year": 1999,
-          "vin": "WAUUL68E85A595576"
-        },
-        {
-          "make": "Buick",
-          "model": "Somerset",
-          "year": 1986,
-          "vin": "WAUEFAFL3DA013639"
-        }
-      ],
-      "credit_card": {
-        "number": "5108751105603797",
-        "type": "mastercard",
-        "zip": "30316"
       }
     },
     {
@@ -218,42 +302,42 @@
     },
     {
       "id": "10",
-      "first_name": "Pierson",
-      "last_name": "Chimes",
-      "email": "pchimes9@upenn.edu",
+      "first_name": "Augie",
+      "last_name": "Wimbridge",
+      "email": "awimbridge9@ustream.tv",
+      "phone_number": "785-720-9631",
       "address": {
-        "street_address": "991 Heath Parkway",
-        "address_line_2": null,
-        "state": "West Virginia",
-        "postal_code": "25775"
+        "street": "618 Hoffman Street",
+        "line_2": null,
+        "city": "Topeka",
+        "state": "KS",
+        "postal_code": "66642"
       },
       "cars": [
         {
-          "car_make": "Mazda",
-          "car_model": "Protege5",
-          "car_year": 2002,
-          "car_vin": "WVWDB7AJ4EW784974"
+          "make": "Audi",
+          "model": "A8",
+          "year": 2001,
+          "vin": "JN1BJ0HP9EM910563"
         },
         {
-          "car_make": "Mitsubishi",
-          "car_model": "GTO",
-          "car_year": 1998,
-          "car_vin": "3MZBM1K73EM946267"
+          "make": "Mazda",
+          "model": "MX-5",
+          "year": 2007,
+          "vin": "WAUCFAFHXEN145147"
         },
         {
-          "car_make": "Cadillac",
-          "car_model": "Escalade",
-          "car_year": 2012,
-          "car_vin": "1FMCU4K39BK088899"
-        },
-        {
-          "car_make": "Kia",
-          "car_model": "Sportage",
-          "car_year": 1997,
-          "car_vin": "WAUWGAFC6DN385812"
+          "make": "Mercedes-Benz",
+          "model": "M-Class",
+          "year": 2005,
+          "vin": "5TFCW5F1XBX518975"
         }
       ],
-      "phone_number": "304-338-5068"
+      "credit_card": {
+        "number": "5048376397610251",
+        "type": "mastercard",
+        "zip": "63158"
+      }
     },
     {
       "id": "11",

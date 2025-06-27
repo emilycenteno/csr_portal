@@ -35,11 +35,11 @@ export default function ActivityCard({ transactions }) {
                         <TableBody>
                             {transactions.map((transaction) => (
                                 <TableRow key={transaction.date}>
-                                    <TableCell>{transaction.date}</TableCell>
-                                    <TableCell  sx = {{fontStyle: 'italic'}}>{transaction.name}</TableCell>
-                                    <TableCell>{transaction.payment_amount}</TableCell>
-                                    <TableCell>{transaction.payment_location}</TableCell>
-                                    <TableCell sx = {{fontStyle: 'italic'}}>{transaction.payment_method}</TableCell>
+                                    <TableCell align = 'left'>{transaction.date}</TableCell>
+                                    <TableCell  align = 'left'sx = {{fontStyle: 'italic'}}>{transaction.activity}</TableCell>
+                                    <TableCell align = 'left'>{transaction.amount}</TableCell>
+                                    <TableCell align = 'left'>{transaction.location}</TableCell>
+                                    <TableCell align = 'left'sx = {{fontStyle: 'italic'}}>{"**** **** **** " + transaction.card.slice(-4)}</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

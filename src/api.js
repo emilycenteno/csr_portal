@@ -37,3 +37,12 @@ export async function deleteUser(customer) {
 
     return res;
 };
+
+export async function getAllUsers() {
+    const res = await fetch('http://localhost:4000/users');
+    if (!res.ok) {
+        throw new Response('Failed to load users', { status: res.status });
+    }
+    const data = await res.json();
+    return data;
+}

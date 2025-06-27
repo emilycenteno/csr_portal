@@ -5,11 +5,8 @@ import TicketCard from './TicketCard';
 import ticketData from '../../tests/faux_ticket_data.json';
 import transactionData from '../../tests/mock_activity_data.json';
 import {
-    Grid, Box, Typography, Chip, Stack, Button, Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-    TextField,
+    Box, Typography, Chip, Stack, Button,
+
 } from "@mui/material";
 import ActivityCard from './ActivityCard';
 import { useLoaderData } from 'react-router-dom';
@@ -19,7 +16,11 @@ import { updateUserInfo, deleteUser } from '../../api';
 import EditVehiclesModal from './EditVehiclesModal';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import DeleteUserModal from './DeleteUserModal';
-
+import PaymentInfoCard from './PaymentInfoCard';
+import EditPaymentModal from './EditPaymentModal';
+import DeleteCarModal from './DeleteCarModal';
+import TransferVehicleModal from './TransferVehicleModal';
+import AddNewVehicleModal from './AddNewVehicleModal';
 
 
 
@@ -28,7 +29,9 @@ export default function CustomerOverviewPage() {
     const customer = useLoaderData();
     const navigate = useNavigate();
 
+
     const handleSubmit = async (data) => {
+        //
         const res = await updateUserInfo(data, customer)
 
         if (res.ok) {
@@ -39,10 +42,10 @@ export default function CustomerOverviewPage() {
             setContactModalOpen(false);
         }
     };
-    const handleDeletion = async () => {
+    const handleUserDeletion = async () => {
         const res = await deleteUser(customer);
         if (res.ok) {
-            setDeleteUserOpen(false); 
+            setDeleteUserOpen(false);
             alert('User has been deleted') // Change these to dialogs 
             navigate('/') // home redirect
         }
@@ -51,36 +54,71 @@ export default function CustomerOverviewPage() {
             setDeleteUserOpen(false);
         }
     }
+    // const handleCarDeletion = async() => {
+    // }
 
 
     const [isContactModalOpen, setContactModalOpen] = useState(false);
     const [isVehicleModalOpen, setVehicleModalOpen] = useState(false);
     const [selectedCar, setSelectedCar] = useState(-1);
     const [isDeleteUserOpen, setDeleteUserOpen] = useState(false);
+    const [isPaymentModalOpen, setPaymentModalOpen] = useState(false);
+    const [isDeleteCarModalOpen, setDeleteCarModalOpen] = useState(false);
+    const [carToDelete, setCarToDelete] = useState(-1);
+    const [carToTransfer, setCarToTransfer] = useState(-1);
+    const [isTransferVehicleModalOpen, setTransferVehicleModalOpen] = useState(false);
+    const [isAddNewCarModalOpen, setAddNewCarModalOpen] = useState(false);
 
-    const openCarModal = (index) => {
+    const openCarModalData = (index) => {
         setVehicleModalOpen(true);
         setSelectedCar(index);
     }
+
+    const deleteCarModalData = (index) => {
+        setDeleteCarModalOpen(true);
+        setCarToDelete(index);
+
+    }
+
+    const transferCarModalData = (index) => {
+        setTransferVehicleModalOpen(true);
+        setCarToTransfer(index);
+    }
+
+    const statusDisplay = () => {
+        let chipColor = '';
+        if (customer.account_status === 'Active') {
+            chipColor = 'success.main'
+        }
+        else if (customer.account_status === 'Inactive') {
+            chipColor = 'grey.500'
+        }
+        else {
+            chipColor = 'error.main'
+        }
+        return chipColor;
+    };
+    const openTickets = customer.tickets.filter((ticket) => ticket.ticket_status !== 'Resolved');
+
     return (
         <>
             <Box sx={{ mb: 2, pb: 1, borderBottom: '1px solid', borderColor: 'divider' }}>
                 <Stack direction='row' alignItems='center' spacing={2}>
                     <Typography sx={{ ml: 2 }} align='left' variant="h4">{customer.first_name + ' ' + customer.last_name}</Typography>
                     <Chip
-                        label={true ? <b>Active</b> : <b>Inactive</b>}
+                        label=<b>{customer.account_status}</b>
                         size="small"
                         sx={{
-                            bgcolor: true ? 'success.main' : 'error.main',
+                            bgcolor: statusDisplay(customer),
                             color: 'white',
                             borderRadius: '8px',
                         }}
                     /> {
-                        true && <Chip
-                            label="Open Tickets"
+                        openTickets.length > 0 && <Chip
+                            label=<b>Open Tickets</b>
                             size="small"
                             sx={{
-                                bgcolor: 'orange', // change this to be a mui color 
+                                bgcolor: 'secondary.main',
                                 color: 'white',
                                 borderRadius: '8px',
                             }}
@@ -88,33 +126,35 @@ export default function CustomerOverviewPage() {
                     }
                     {/* Spacer */}
                     <Box sx={{ flexGrow: 1 }} />
-                    <Button onClick={() => setDeleteUserOpen(true)
+                    <Button color="warning" onClick={() => setDeleteUserOpen(true)
                     } >
                         <DeleteOutlinedIcon />
                         DELETE USER
                     </Button>
 
-
-                    {/* if users have an open ticket or 
-                        an account is frozen then I can put those
-                        icons here too  */}
                 </Stack>
             </Box >
-            <Grid container spacing={2} sx={{ pt: 1 }} >
-                <Grid size={{ xs: 6, md: 5 }}>
+            <Box
+                sx={{
+                    display: 'grid',
+                    gridTemplateColumns: '2fr 1fr', // Left side is wider
+                    gap: 4,
+                }}
+            >
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                     <CustomerInfoCard key={customer?.id} customer={customer} onEdit={() => setContactModalOpen(true)} />
-                </Grid>
-                <Grid size={{ xs: 6, md: 7 }}>
-                    <TicketCard tickets={ticketData} />
-                </Grid>
-                <Grid size={{ xs: 6, md: 5 }}>
-                    <VehiclesCard key={customer?.id} customer={customer} onEdit={openCarModal} />
-                </Grid>
-                <Grid size={{ xs: 6, md: 7 }}>
-                    <ActivityCard transactions={transactionData} />
-                </Grid>
+                    <VehiclesCard key={customer?.id} customer={customer} onEdit={openCarModalData} onDelete={deleteCarModalData} onTransfer={transferCarModalData} onCreate={() => setAddNewCarModalOpen(true)} />
+                    <PaymentInfoCard creditCard={customer.credit_card} onEdit={() => setPaymentModalOpen(true)} />
 
-            </Grid>
+                </Box>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    {
+                        customer.tickets.length > 0 && <TicketCard customer={customer} />
+                    }                    <ActivityCard transactions={customer.transaction_history} />
+
+                </Box>
+            </Box>
+
             {
                 isContactModalOpen && <EditContactModal
                     open={isContactModalOpen}
@@ -127,8 +167,9 @@ export default function CustomerOverviewPage() {
                 isVehicleModalOpen && <EditVehiclesModal
                     open={isVehicleModalOpen}
                     onClose={() => setVehicleModalOpen(false)}
-                    initialData={customer.cars[selectedCar]}
-                    onSubmit={handleSubmit}
+                    initialData={customer}
+                    carKey={selectedCar}
+                    setVehicleModalState={setVehicleModalOpen}
                 />
             }
             {
@@ -136,8 +177,40 @@ export default function CustomerOverviewPage() {
                     open={isDeleteUserOpen}
                     onClose={() => setDeleteUserOpen(false)}
                     initialData={customer}
-                    onSubmit={handleDeletion} />
+                    onSubmit={handleUserDeletion} />
             }
+            {
+                isPaymentModalOpen && < EditPaymentModal
+                    open={isPaymentModalOpen}
+                    onClose={() => setPaymentModalOpen(false)}
+                    initialData={customer}
+                    setPaymentModalState={setPaymentModalOpen} />
+
+            }
+            {
+                isDeleteCarModalOpen && <DeleteCarModal
+                    open={isDeleteCarModalOpen}
+                    onClose={() => setDeleteCarModalOpen(false)}
+                    initialData={customer}
+                    carKey={carToDelete}
+                    setDeleteCarModalState={setDeleteCarModalOpen} />
+            }
+            {
+                isTransferVehicleModalOpen && <TransferVehicleModal
+                    open={isTransferVehicleModalOpen}
+                    onClose={() => setTransferVehicleModalOpen(false)}
+                    initialData={customer}
+                    carKey={carToTransfer}
+                    setTransferVehicleModalState={setTransferVehicleModalOpen} />
+            }
+            {
+                isAddNewCarModalOpen && <AddNewVehicleModal
+                    open={isAddNewCarModalOpen}
+                    onClose={() => setAddNewCarModalOpen(false)}
+                    initialData={customer}
+                    setAddNewVehicleState={setAddNewCarModalOpen} />
+            }
+
 
 
 
